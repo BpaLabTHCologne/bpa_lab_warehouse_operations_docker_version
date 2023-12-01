@@ -1,21 +1,25 @@
 version: '3'
 services:
-  processapplication:
-    image: warehouse-operations-app-test-version
+  process-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
     environment:
-      IS_CLOUD: ${IS_CLOUD}
-      ZEEBE_CLIENT_ID: 9YCTFr_6P1gPUdNoI356Z8J8mmpCOZQc
-      ZEEBE_CLIENT_SECRET: .q~0XxYLN6rIpyu.~tQO8Vyc3oJR6UhSHx7qWEpEok4PYp~eHLehw~-2Za1z7Nau
-      CAMUNDA_CLUSTER_ID: e28cca11-45f7-496d-85fe-6520e1c80db0
-      CAMUNDA_CLUSTER_REGION: bru-2
-      ZEEBE_ADRESS: localhost:26500
-      ZEEBE_TOKEN_AUDIENCE: e28cca11-45f7-496d-85fe-6520e1c80db0.bru-2.zeebe.camunda.io
-      CAMUNDA_OAUTH_URL: https://login.cloud.camunda.io/oauth/token
-      MYSQL_USER: ftrobot
-      MYSQL_PASSWORD: Camunda2021!
+        IS_CLOUD: ${IS_CLOUD}
+        ZEEBE_CLIENT_ID: cbeRUiuBk.tP.iK3GBbHx.4YyAUx~WOA
+        ZEEBE_CLIENT_SECRET: W-YUP6OLH4E3SntjyUByv4GdjDWy-Z8G~Mrxvy6r9z7tvw8LV90MvSMhi-l84qTQ
+        CAMUNDA_CLUSTER_ID: 9c374c31-412f-4b3f-a1cf-66c56565bef3
+        CAMUNDA_CLUSTER_REGION: bru-2
+        ZEEBE_ADRESS: localhost:26500
+        ZEEBE_TOKEN_AUDIENCE: 9c374c31-412f-4b3f-a1cf-66c56565bef3.bru-2.zeebe.camunda.io
+        CAMUNDA_OAUTH_URL: https://login.cloud.camunda.io/oauth/token
+        MYSQL_USER: ftrobot
+        MYSQL_PASSWORD: Camunda2021!
 
-  robotapplication:
-    image: highbay-robot-app-test-version
+  robot-app:
+    build:
+      context: ./TXT_Controller_Apps
+      dockerfile: Dockerfile
 
   mysql-db:
     image: mysql:5.7 

@@ -261,6 +261,8 @@ async def check_inventory(job: Job, **variables) -> dict:
 # GetBicycleFromShelf ============================================================
 @worker.task(task_type=GET_BICYCLE_FROM_SHELF_TASK_ID, exception_handler=error_handler)
 async def get_bicycle_from_shelf(job: Job, **variables)-> dict:
+    logging.info(f'{GET_BICYCLE_FROM_SHELF_TASK_ID}:: {variables}')
+
     await publish_start_message(**variables)
 
     return variables
@@ -357,6 +359,8 @@ async def check_storage(job: Job, **variables)-> dict:
 # StoreBicycleToShelf
 @worker.task(task_type=STORE_BICYCLE_TO_SHELF_TASK_ID, exception_handler=error_handler)
 async def store_bicycle_to_shelf(job: Job, **variables)-> dict:
+    logging.info(f'{STORE_BICYCLE_TO_SHELF_TASK_ID}:: {variables}')
+
     await publish_start_message(**variables)
     
     return variables
