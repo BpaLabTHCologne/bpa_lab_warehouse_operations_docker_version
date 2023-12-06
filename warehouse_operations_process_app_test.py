@@ -36,8 +36,10 @@ if os.getenv('IS_CLOUD') == "true":
         region=os.getenv('CAMUNDA_CLUSTER_REGION'),
     )
 else:
-    zeebe_adress=os.getenv("ZEEBE_ADDRESS")
-    channel = create_insecure_channel(zeebe_adress)
+    zeebe_adress_host=os.getenv("ZEEBE_ADRESS_HOST")
+    zeebe_adress_port=os.getenv("ZEEBE_ADRESS_PORT")
+    channel = create_insecure_channel(zeebe_adress_host, zeebe_adress_port)
+
 
 # Python Client for Zeebe and Worker
 client = ZeebeClient(channel)
