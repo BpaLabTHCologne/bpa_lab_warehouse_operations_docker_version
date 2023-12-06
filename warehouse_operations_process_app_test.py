@@ -87,7 +87,7 @@ if os.getenv('IS_CLOUD') == "true":
     oauth_token = get_oauth_token()
     seperateChannel = create_grpc_channel(oauth_token)
 else:
-    zeebe_adress=os.getenv("ZEEBE_ADDRESS")
+    zeebe_adress=os.getenv("ZEEBE_ADRESS")
     seperateChannel = grpc.insecure_channel(zeebe_adress)
 
 
