@@ -28,7 +28,7 @@ from zeebe_grpc import gateway_pb2, gateway_pb2_grpc
 load_dotenv()
 
 # Camunda Cloud or local Channel with Python Client
-if os.getenv('IS_CLOUD') == "true":
+if (os.getenv('IS_CLOUD') == 'true'):
     channel = create_camunda_cloud_channel(
         client_id=os.getenv('ZEEBE_CLIENT_ID'),
         client_secret=os.getenv('ZEEBE_CLIENT_SECRET'),
@@ -36,8 +36,10 @@ if os.getenv('IS_CLOUD') == "true":
         region=os.getenv('CAMUNDA_CLUSTER_REGION'),
     )
 else:
-    zeebe_adress=os.getenv("ZEEBE_ADDRESS")
-    channel = create_insecure_channel(zeebe_adress)
+    zeebe_adress_host=os.getenv("ZEEBE_ADRESS_HOST")
+    zeebe_adress_port=os.getenv("ZEEBE_ADRESS_PORT")
+    channel = create_insecure_channel(zeebe_adress_host, zeebe_adress_port)
+
 
 # Python Client for Zeebe and Worker
 client = ZeebeClient(channel)
@@ -83,11 +85,11 @@ def create_grpc_channel(oauth_token):
         ),
     )
 
-if os.getenv('IS_CLOUD') == "true":
+if (os.getenv('IS_CLOUD') == 'true'):
     oauth_token = get_oauth_token()
     seperateChannel = create_grpc_channel(oauth_token)
 else:
-    zeebe_adress=os.getenv("ZEEBE_ADDRESS")
+    zeebe_adress=os.getenv("ZEEBE_ADRESS")
     seperateChannel = grpc.insecure_channel(zeebe_adress)
 
 
@@ -127,7 +129,7 @@ async def logging_decorator(job: Job) -> Job:
 # Establishes a connection to the MySQL database
 async def connect_to_db():
     return mysql.connector.connect(
-        host='localhost',
+        host='mysql-db',
         user=os.getenv('MYSQL_USER'),
         password=os.getenv('MYSQL_PASSWORD'),
         database='warehouse'
@@ -261,6 +263,8 @@ async def check_inventory(job: Job, **variables) -> dict:
 # GetBicycleFromShelf ============================================================
 @worker.task(task_type=GET_BICYCLE_FROM_SHELF_TASK_ID, exception_handler=error_handler)
 async def get_bicycle_from_shelf(job: Job, **variables)-> dict:
+    logging.info(f'{GET_BICYCLE_FROM_SHELF_TASK_ID}:: {variables}')
+
     await publish_start_message(**variables)
 
     return variables
@@ -357,6 +361,8 @@ async def check_storage(job: Job, **variables)-> dict:
 # StoreBicycleToShelf
 @worker.task(task_type=STORE_BICYCLE_TO_SHELF_TASK_ID, exception_handler=error_handler)
 async def store_bicycle_to_shelf(job: Job, **variables)-> dict:
+    logging.info(f'{STORE_BICYCLE_TO_SHELF_TASK_ID}:: {variables}')
+
     await publish_start_message(**variables)
     
     return variables
@@ -421,9 +427,14 @@ if __name__ == '__main__':
     logging.info("Starting application")
 
     # Check if the connection to the MQTT broker is successful
-    if MqttClient.connect("10.0.0.21", 1883, 60) != 0:
-        logging.error("Could not establish connection with the MQTT broker!")
-        sys.exit(-1)
+    if (os.getenv('IS_PROD') == 'true'):
+        if MqttClient.connect("10.0.0.21", 1883, 60) != 0:
+            logging.error("Could not establish connection with the MQTT broker!")
+            sys.exit(-1)
+    else:
+        if MqttClient.connect("mqtt-broker", 1883, 60) != 0:
+            logging.error("Could not establish connection with the MQTT broker!")
+            sys.exit(-1)
 
     # Start a new thread that handles incoming MQTT messages
     MqttClient.loop_start()

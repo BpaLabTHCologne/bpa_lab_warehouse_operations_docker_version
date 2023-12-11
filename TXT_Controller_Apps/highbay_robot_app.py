@@ -2,26 +2,28 @@ import paho.mqtt.client as mqtt
 import json
 from domain import HighbayDomain
 import sys
+import os
 
-highbay_domain = HighbayDomain()
+if (os.getenv('IS_PROD') == 'true'):
+    highbay_domain = HighbayDomain()
 
-# Perform retrieval
-def fetch_bicycle_from_shelf(place_id):
-    while not highbay_domain.get_product(place_id):
-        continue
+    # Perform retrieval
+    def fetch_bicycle_from_shelf(place_id):
+        while not highbay_domain.get_product(place_id):
+            continue
 
-def move_bicycle_to_dock():
-    while not highbay_domain.place_product():
-        continue
+    def move_bicycle_to_dock():
+        while not highbay_domain.place_product():
+            continue
 
-# Perform storage
-def pick_bicycle():
-    while not highbay_domain.pick_product():
-        continue
+    # Perform storage
+    def pick_bicycle():
+        while not highbay_domain.pick_product():
+            continue
 
-def store_bicycle_to_shelf(place_id):
-    while not highbay_domain.put_product(place_id):
-        continue
+    def store_bicycle_to_shelf(place_id):
+        while not highbay_domain.put_product(place_id):
+            continue
 
 
 # Functions for MQTT
@@ -35,20 +37,26 @@ def on_message(client, userdata, msg):
     # Load the received message
     message = json.loads(msg.payload)
 
-    # Perform the task based on the function parameter
+    # Perform the task based on the function parameter (Test version: robot action are commented for testing without robot)
     if message['function'] == 'fetch_bicycle_from_shelf': 
-        fetch_bicycle_from_shelf(message['place_id'])
+        if os.getenv('IS_PROD'):
+            fetch_bicycle_from_shelf(message['place_id'])
+        print("Bicycle fetched from shelf!")
 
     elif message['function'] == 'move_bicycle_to_dock': 
-        move_bicycle_to_dock()
-        print ("Product exstored!")
+        if os.getenv('IS_PROD'):
+            fetch_bicycle_from_shelf(message['place_id']) 
+        print ("Bicycle moved to dock!")
 
     elif message['function'] == 'pick_bicycle':
-        pick_bicycle()
+        if os.getenv('IS_PROD'):
+            fetch_bicycle_from_shelf(message['place_id']) 
+        print("Bicycle picked up!")    
 
     elif message['function'] == 'store_bicycle_to_shelf':
-        store_bicycle_to_shelf(message['place_id'])
-        print("Product stored!")
+        if os.getenv('IS_PROD'):
+            fetch_bicycle_from_shelf(message['place_id']) 
+        print("Bicycle stored to shelf!")
 
     # Response that is sent once the task is executed
     completed_message = {
@@ -66,9 +74,14 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-if client.connect("10.0.0.21", 1883, 60) != 0:
-    print("Could not establish connection with the MQTT broker!")
-    sys.exit(-1)
+if (os.getenv('IS_PROD') == 'true'):
+    if client.connect("10.0.0.21", 1883, 60) != 0:
+        print("Could not establish connection with the MQTT broker!")
+        sys.exit(-1)
+else:
+    if client.connect("mqtt-broker", 1883, 60) != 0:
+        print("Could not establish connection with the MQTT broker!")
+        sys.exit(-1)
 
 # Block the network loop to keep the script running
 client.loop_forever()

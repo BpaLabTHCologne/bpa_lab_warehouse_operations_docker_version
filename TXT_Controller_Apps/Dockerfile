@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Definieren Sie den Befehl zum Ausführen der Anwendung
-CMD ["python", "./highbay_robot_app_test.py"]
+CMD ["python", "./highbay_robot_app.py"]

@@ -2,6 +2,5 @@
 .git*
 *.md
 .env
-warehouse_operation_process_app.py
 TXT_Controller_Apps/
 warehouse_operation_process.bpmn
