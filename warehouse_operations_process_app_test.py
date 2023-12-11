@@ -28,7 +28,7 @@ from zeebe_grpc import gateway_pb2, gateway_pb2_grpc
 load_dotenv()
 
 # Camunda Cloud or local Channel with Python Client
-if os.getenv('IS_CLOUD') == "true":
+if (os.getenv('IS_CLOUD') == 'true'):
     channel = create_camunda_cloud_channel(
         client_id=os.getenv('ZEEBE_CLIENT_ID'),
         client_secret=os.getenv('ZEEBE_CLIENT_SECRET'),
@@ -85,7 +85,7 @@ def create_grpc_channel(oauth_token):
         ),
     )
 
-if os.getenv('IS_CLOUD') == "true":
+if (os.getenv('IS_CLOUD') == 'true'):
     oauth_token = get_oauth_token()
     seperateChannel = create_grpc_channel(oauth_token)
 else:
@@ -427,9 +427,14 @@ if __name__ == '__main__':
     logging.info("Starting application")
 
     # Check if the connection to the MQTT broker is successful
-    if MqttClient.connect("mqtt-broker", 1883, 60) != 0:
-        logging.error("Could not establish connection with the MQTT broker!")
-        sys.exit(-1)
+    if (os.getenv('IS_PROD') == 'true'):
+        if MqttClient.connect("10.0.0.21", 1883, 60) != 0:
+            logging.error("Could not establish connection with the MQTT broker!")
+            sys.exit(-1)
+    else:
+        if MqttClient.connect("mqtt-broker", 1883, 60) != 0:
+            logging.error("Could not establish connection with the MQTT broker!")
+            sys.exit(-1)
 
     # Start a new thread that handles incoming MQTT messages
     MqttClient.loop_start()

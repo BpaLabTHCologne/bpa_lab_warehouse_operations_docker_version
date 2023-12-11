@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     environment:
         IS_CLOUD: ${IS_CLOUD}
+        IS_PROD: ${IS_PROD}
         ZEEBE_CLIENT_ID: cbeRUiuBk.tP.iK3GBbHx.4YyAUx~WOA
         ZEEBE_CLIENT_SECRET: W-YUP6OLH4E3SntjyUByv4GdjDWy-Z8G~Mrxvy6r9z7tvw8LV90MvSMhi-l84qTQ
         CAMUNDA_CLUSTER_ID: 9c374c31-412f-4b3f-a1cf-66c56565bef3
@@ -16,12 +17,14 @@ services:
         ZEEBE_TOKEN_AUDIENCE: 9c374c31-412f-4b3f-a1cf-66c56565bef3.bru-2.zeebe.camunda.io
         CAMUNDA_OAUTH_URL: https://login.cloud.camunda.io/oauth/token
         MYSQL_USER: ftrobot
-        MYSQL_PASSWORD: Camunda2021!
+        MYSQL_PASSWORD: Camunda2024!
 
   robot-app:
     build:
       context: ./TXT_Controller_Apps
       dockerfile: Dockerfile
+    environment:
+        IS_PROD: ${IS_PROD}
 
   mysql-db:
     image: mysql:5.7 
@@ -29,7 +32,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: warehouse
       MYSQL_USER: ftrobot
-      MYSQL_PASSWORD: Camunda2021!
+      MYSQL_PASSWORD: Camunda2024!
     ports:
       - "3306:3306"
     volumes:
