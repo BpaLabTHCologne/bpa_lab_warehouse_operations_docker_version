@@ -39,23 +39,23 @@ def on_message(client, userdata, msg):
 
     # Perform the task based on the function parameter (Test version: robot action are commented for testing without robot)
     if message['function'] == 'fetch_bicycle_from_shelf': 
-        if os.getenv('IS_PROD'):
+        if (os.getenv('IS_PROD') == 'true'):
             fetch_bicycle_from_shelf(message['place_id'])
         print("Bicycle fetched from shelf!")
 
     elif message['function'] == 'move_bicycle_to_dock': 
-        if os.getenv('IS_PROD'):
-            fetch_bicycle_from_shelf(message['place_id']) 
+        if (os.getenv('IS_PROD') == 'true'):
+            move_bicycle_to_dock()
         print ("Bicycle moved to dock!")
 
     elif message['function'] == 'pick_bicycle':
-        if os.getenv('IS_PROD'):
-            fetch_bicycle_from_shelf(message['place_id']) 
+        if (os.getenv('IS_PROD') == 'true'):
+            pick_bicycle() 
         print("Bicycle picked up!")    
 
     elif message['function'] == 'store_bicycle_to_shelf':
-        if os.getenv('IS_PROD'):
-            fetch_bicycle_from_shelf(message['place_id']) 
+        if (os.getenv('IS_PROD') == 'true'):
+            highbay_domain.put_product(message['place_id']) 
         print("Bicycle stored to shelf!")
 
     # Response that is sent once the task is executed
