@@ -1,8 +1,15 @@
-# bpa_lab_warehouse_operations
+# BPA Lab: Warehouse operations process application
 
-## Important notice!
-* The project has a test version (**warehouse_operations_process_app_test.py** and **highbay_warehouse_app_test.py**) which should be used for the process application if you are not able to interact with the warehouse robot physically 
-* If you want to run the non-test/productive version of this project in the Camunda 8 Cloud u need to have both an connection to the **eduroam - Univesity Network** for internet access and you need a **local connection to the router in the BPALab** via lan cable
+## Description 
+Dieses Repository enthält den Code einer Prozessapplikation, die bestand eines Hochregallagers erfasst und das Ein- und Auslagern von Gegenständen in einem physischen Hochregallager durch einen Lagerroboter ermöglicht. 
+Das Prozessapplikation steht als Docker Container zur Verfügung und besteht aus folgenden Services:
+* process-app: Steuerung des Prozessflusses, Überprüfung des Lagerbestandes und Erfassung der Veränderungen des Lagerbestandes
+* robot-app: Physische Steuerung des Lagerroboters
+* mysql-db: Datenbank, zur permanenten Speicherung der Lagerbestände
+* mqtt-broker: Nachrichtenbroker für die Kommunikation zwischen dem process-app und robot-app Services
+
+## Associated BPMN process model
+![image](https://github.com/BpaLabTHCologne/bpa_lab_warehouse_operations/assets/134142150/15652fdd-3fdb-4fe9-9b19-9d1be8ed87c4)
 
 ## Entry point for concepts and important components of Camunda 8 and Zeebe
 * Documentation for the use and understanding of service tasks:
@@ -10,44 +17,21 @@
 * Documentation to understand the job worker concept:
   * https://docs.camunda.io/docs/components/concepts/job-workers/
 
-## Associated BPMN process model
-![image](https://github.com/BpaLabTHCologne/bpa_lab_warehouse_operations/assets/134142150/15652fdd-3fdb-4fe9-9b19-9d1be8ed87c4)
+# 
+
+## Download of the repository
+
 
 ## Required installations
 
-### Python
-1. First download the installer of [Python 3.11.x](https://www.python.org/downloads/release/python-3114/) for your operating system
-2. When you go through the steps of the installer, make sure that Python is added to the PATH environment variable
-3. When the installation is complete, use the console command `python --version` to check if Python is installed
-4. Also check via the command `pip --version` if pip is installed. This is needed in the following for the installation of the libraries
-
-### MySQL Server and Workbench
-1. Download the [MySQL Community Server Version 8](https://dev.mysql.com/downloads/windows/installer/8.0.html) and follow the steps of the installer
-2. Download the [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) and follow the steps of the installer
-
-## Download the needed Python libraries
-A list of the Python libraries needed to run this project can be found in the **reqirements.txt**
-
-1. Open the console/terminal 
-2. Install all needed libraries with the command `pip install -r requirements.txt`
-
-## MySQL database configuration
-1. Open the file **createUserDB.sql** in an editor and adjust the places where you need to enter your own user and password to connect to the database
-2. Start MySQL Workbench and click with the right mouse button on the connection to the MySQL server and then click **"Start Command Line Client "**
-3. First execute the following command: `source ...\bpa_lab_warehouse_operations\MySQL_configuration_scripts\createUserDB.sql` (path must be changed according to your own location)
-4. Then execute the following command: `source ...\bpa_lab_warehouse_operations\MySQL_configuration_scripts\warehouse_place.sql` (path must be changed according to your own location)
-
-## Installation and start of Mosquitto Broker (only needed for the testing version)
-1. Download the [MQTT Broker](https://mosquitto.org/download/) for your operating system
-2. Open your services settings and search for "Mosquitto Broker" (example picture of Windows)
-
-   ![image](https://github.com/BpaLabTHCologne/bpa_lab_warehouse_operations/assets/134142150/6af1d821-b1af-4218-a34e-7489aa98ba03)
-
-3. Start the "Mosquitto Broker" Service 
+### Installation of Docker Desktop
+To install Docker Desktop, follow this link: https://docs.docker.com/get-docker/ and select the version for your operating system. Then follow the installation instructions. Please note that your PC will restart once during or after the installation.
 
 
-## Configuration of environment variables in own .env file.
-The file **.env.example** serves as an example for an .env file. 
+## Needed configurations
+
+### Configuration of environment variables in own .env file.
+The file **.env_example.txt** serves as an example for an .env file. 
 
 1. First after the project on the own hard disk was cloned, an .env file (name of the file: ".env") is created
 2. Copy the text from the **.env.example** file into the newly created .env file
