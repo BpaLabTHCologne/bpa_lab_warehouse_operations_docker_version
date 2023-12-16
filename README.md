@@ -38,20 +38,18 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    * Set the value to **true** if you want to run the process application with the movements of the physical robot **(only when you have access to the robot and the correct setup)**
 
 ## Execution of the process application
-**Before execution, it is important that all installations and configurations have been carried out completely and successfully**
+**Before execution, it is important that all installations and configurations have been done completely and successfully**
 
 1. Start the prompt and change to the path of the folder in which you saved/cloned the repository
-2. Then start the docker container by using the following command: `docker compose up --build`and wait till all serices are started
+2. Then start the docker container by using the following command: `docker compose up --build` and wait till all services are started
 3. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
-* When you click on "run" the process, the following variables **must be passed** in JSON format:
-* **item** defines the name of the object for which the action will be executed
-* **place_id** defines the place in a shelf for which the action should be executed
-* **shelf_id** defines the shelf for which the action is to be executed
-* **task** is the action that should be executed
-* **transactionId** is a unique number needed for the message events that control the process between both pools or processes
-    
-* Example of placing an item in the warehouse on the third place:
-`{"item":"Bicycle","place_id":3,"shelf_id":1,"task":"store","transactionId":0}`
+     * When you click on "run" the process, the following variables **must be passed** in JSON format:
+     * **item** defines the name of the object for which the action will be executed
+     * **place_id** defines the place in a shelf for which the action should be executed
+     * **shelf_id** defines the shelf for which the action is to be executed
+     * **task** is the action that should be executed
+     * **transactionId** is a unique number needed for the message events that controlling between both pools/processes
+     
+* Example: Storing an item on the third place: `{"item":"Bicycle","place_id":3,"shelf_id":1,"task":"store","transactionId":0}`
  
-* Example of retrieving an item from the third place:
-`{"item":"Bicycle","place_id":3,"shelf_id":1,"task":"retrieve","transactionId":0}` 
+* Example: Retrieving an item from the third place: `{"item":"Bicycle","place_id":3,"shelf_id":1,"task":"retrieve","transactionId":0}`
