@@ -19,7 +19,7 @@ The process application is available as a Docker container and consists of the f
 
 # Getting started
 
-## Clone/Download of the repository
+## Clone/Download the repository
 Clone or download the code of this repository to your local machine. For cloning you need to install git: https://git-scm.com/downloads 
 
 ## Installation of Docker Desktop
