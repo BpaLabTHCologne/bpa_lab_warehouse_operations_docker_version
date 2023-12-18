@@ -54,7 +54,7 @@ The file **.env_example.txt** in the repository serves as an example for an .env
      * **place_id** defines the place in a shelf for which the action should be executed **(can be a numeric value between 1 and 6)**
      * **shelf_id** defines the shelf for which the action is to be executed **(always set the value to 1)**
      * **task** is the action that should be executed **(can be either "store" or "retrieve")**
-     * **transactionId** is a unique number needed for the message events that controlling between both pools/processes **(always set the value to 0)**
+     * **transactionId** is a unique number needed for the receiving tasks **(always set the value to 0)**
      
 * Example: Storing a bicycle on the third place:
   ```bash
