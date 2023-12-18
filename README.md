@@ -41,7 +41,7 @@ The file **.env_example.txt** in the repository serves as an example for an .env
 ## Execution of the process application
 **Before execution, it is important that all installations and configurations have been done completely and successfully!**
 
-1. Start the prompt and change to the path of the folder in which you saved/cloned the repository
+1. Start the prompt and direct to the path of the folder in which you saved/cloned the repository
 2. Then start the docker container by using the following command:
    ```bash
    docker compose up --build
