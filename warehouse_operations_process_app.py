@@ -225,7 +225,6 @@ UPDATE_SHELF_STATUS_ID = "update-shelf-status"
 @worker.task(task_type=CHECK_BICYCLE_AVAILABILITY_ID, exception_handler=error_handler)
 async def check_inventory(job: Job, **variables) -> dict:
     try:
-        #global shutdown_flag
 
         piMySqlDB = await connect_to_db()
         logging.info(piMySqlDB)
