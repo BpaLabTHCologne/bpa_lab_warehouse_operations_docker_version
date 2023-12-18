@@ -32,8 +32,8 @@ The file **.env_example.txt** in the repository serves as an example for an .env
 
 1. First after you cloned the code of the repository, you should create an .env-file (name of the file: ".env") is created
 2. Copy the text from the **.env_example.txt** file into the newly created .env file
-3. The first environment value **IS_CLOUD** must be **"true"** or **"false"** depending on whether you are using Camunda 8 Cloud or Self-managed
-4. The second environment value **IS_PROD** must again be **"true"** or **"false"**
+3. The first environment value **IS_CLOUD** must be **'true'** or **'false'** depending on whether you are using Camunda 8 Cloud or Self-managed
+4. The second environment value **IS_PROD** must again be **'true'** or **'false'**
    * Set the value to **false** if you want to run/test the process application without having access to the physical robot
    * Set the value to **true** if you want to run the process application with the movements of the physical robot **(only when you have access to the robot and the correct setup)**
 
