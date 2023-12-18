@@ -38,7 +38,7 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    * Set the value to **true** if you want to run the process application with the movements of the physical robot **(only when you have access to the robot and the correct setup)**
 
 ## Execution of the process application
-**Before execution, it is important that all installations and configurations have been done completely and successfully**
+**Before execution, it is important that all installations and configurations have been done completely and successfully!**
 
 1. Start the prompt and change to the path of the folder in which you saved/cloned the repository
 2. Then start the docker container by using the following command: `docker compose up --build` and wait till all services are started
