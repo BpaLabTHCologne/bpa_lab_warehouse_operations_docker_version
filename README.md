@@ -42,8 +42,13 @@ The file **.env_example.txt** in the repository serves as an example for an .env
 **Before execution, it is important that all installations and configurations have been done completely and successfully!**
 
 1. Start the prompt and change to the path of the folder in which you saved/cloned the repository
-2. Then start the docker container by using the following command: `docker compose up --build` and wait till all services are started
-3. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
+2. Then start the docker container by using the following command:
+   ```bash
+   docker compose up --build
+    ```
+   and wait till all services are started
+   
+4. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
      * When you click on "run" the process, the following variables **must be passed** in JSON format:
      * **item** defines the name of the object for which the action will be executed
      * **place_id** defines the place in a shelf for which the action should be executed
@@ -51,6 +56,8 @@ The file **.env_example.txt** in the repository serves as an example for an .env
      * **task** is the action that should be executed
      * **transactionId** is a unique number needed for the message events that controlling between both pools/processes
      
-* Example: Storing an item on the third place: `{"item":"Bicycle","place_id":3,"shelf_id":1,"task":"store","transactionId":0}`
- 
-* Example: Retrieving an item from the third place: `{"item":"Bicycle","place_id":3,"shelf_id":1,"task":"retrieve","transactionId":0}`
+* Example: Storing a bicycle on the third place:
+  ```bash
+  {"item":"Bicycle","place_id":3,"shelf_id":1,"task":"store","transactionId":0}
+  ```
+  ![image](https://github.com/DomenicGonzalez/bpa_lab_warehouse_operations_docker_version/assets/134142150/e746d89d-b290-4e6a-ab5b-a2a1812d6893)
