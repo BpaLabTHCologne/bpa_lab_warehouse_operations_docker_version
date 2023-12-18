@@ -36,7 +36,7 @@ The file **.env_example.txt** in the repository serves as an example for an .env
 3. The first environment value **IS_CLOUD** must be **'true'** or **'false'** depending on whether you are using Camunda 8 Cloud or Self-managed
 4. The second environment value **IS_PROD** must again be **'true'** or **'false'**
    * Set the value to **false** if you want to run/test the process application without having access to the physical robot
-   * Set the value to **true** if you want to run the process application with the movements of the physical robot **(only when you have access to the robot and the correct setup)**
+   * Set the value to **true** if you want to run the process application with the movements of the physical robot **(only when you have access to the physical warehouse robot and the correct setup)**
 
 ## Execution of the process application
 **Before execution, it is important that all installations and configurations have been done completely and successfully!**
