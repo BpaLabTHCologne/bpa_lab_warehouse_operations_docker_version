@@ -49,12 +49,12 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    and wait till all services are started
    
 4. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
-     * When you click on "run" the process, the following variables **must be passed** in JSON format:
-     * **item** defines the name of the object for which the action will be executed
-     * **place_id** defines the place in a shelf for which the action should be executed
-     * **shelf_id** defines the shelf for which the action is to be executed
-     * **task** is the action that should be executed
-     * **transactionId** is a unique number needed for the message events that controlling between both pools/processes
+     * **When you click on "run" the process, the following variables must be passed in JSON format!**:
+     * **item** defines the name of the object for which the action will be executed **(can be any string value)**
+     * **place_id** defines the place in a shelf for which the action should be executed **(can be a numeric value between 1 and 6)**
+     * **shelf_id** defines the shelf for which the action is to be executed **(always set the value to 1)**
+     * **task** is the action that should be executed **(can be either "store" or "retrieve")**
+     * **transactionId** is a unique number needed for the message events that controlling between both pools/processes **(always set the value to 0)**
      
 * Example: Storing a bicycle on the third place:
   ```bash
