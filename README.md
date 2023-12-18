@@ -6,7 +6,7 @@ The process application is available as a Docker container and consists of the f
 * process-app: control of the process flow, checking of stock levels and recording of changes to stock levels
 * robot-app: Physical control of the warehouse robot
 * mysql-db: Database for the permanent storage of stock levels
-* mqtt-broker: Message broker for communication between the process-app and robot-app services
+* mqtt-broker: Message broker for communication between the process-app and robot-app service
 
 ## Associated BPMN process model
 ![warehouse-operations-process](https://github.com/DomenicGonzalez/bpa_lab_warehouse_operations_docker_version/assets/134142150/e838071e-7f9f-4c7f-b8f6-33fb417c184e)
