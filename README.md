@@ -49,8 +49,10 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    ```bash
    docker compose up --build
     ```
-   and wait till all services are started
-   
+3. Check in Docker Desktop under the **"Container "** tab whether all services are in **"Running "** mode, see the following image:
+
+![image](https://github.com/DomenicGonzalez/bpa_lab_warehouse_operations_docker_version/assets/134142150/09986dcd-6966-401c-9ad4-f104d47ff440)
+
 4. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
    * **When you click on "run" the process, the following variables must be passed in JSON format!:**
      
