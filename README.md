@@ -53,13 +53,15 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    
 4. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
    * **When you click on "run" the process, the following variables must be passed in JSON format!:**
-  | Variable name  | Description | Possible values|
+     
+  | Variable name  | Description | Possible values |
   | ------------- | ------------- | ------------- |
   | item | The name of the object for which the action will be executed | Can be any string value |
   | place_id  | The place in a shelf for which the action should be executed  | Must be a numeric value between 1 and 6 |
   | shelf_id  | The shelf for which the action is to be executed | Always set the value to 1 |
   | task  | The action that should be executed  | Must be either "store" or "retrieve" |
   | transactionId  | An unique number needed for the receiving tasks  | always set the value to 0 |
+
 
 * Example: Storing a bicycle on the third place:
   ```bash
