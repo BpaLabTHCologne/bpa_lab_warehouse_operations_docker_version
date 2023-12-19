@@ -34,12 +34,12 @@ Please first open the folder in which you have cloned or saved the repository wi
 ### Configuration of environment variables in own .env file.
 The file **.env_example.txt** in the repository serves as an example for an .env-file. 
 
-1. First after you cloned the code of the repository, you should create an .env-file (name of the file: ".env") is created
-2. Copy the text from the **.env_example.txt** file into the newly created .env file
+1. First you should create an .env-file (name of the file: ".env")
+2. Copy the text from the **.env_example.txt** file into the newly created **.env** file
 3. The first environment value **IS_CLOUD** must be **'true'** or **'false'** depending on whether you are using Camunda 8 Cloud or Self-managed
 4. The second environment value **IS_PROD** must again be **'true'** or **'false'**
    * Set the value to **false** if you want to run/test the process application without having access to the physical robot
-   * Set the value to **true** if you want to run the process application with the movements of the warehouse robot **(only when you have access to the physical warehouse robot and the correct setup)**
+   * Set the value to **true** if you want to run the process application with the active movements of the warehouse robot **(only when you have access to the physical warehouse robot and the correct setup)**
 
 ## Execution of the process application
 **Before execution, it is important that all installations and configurations have been done completely and successfully!**
@@ -52,13 +52,15 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    and wait till all services are started
    
 4. Run an instance of the warehouse operations process defined by **warehouse-operations-process.bpmn** in Camunda:
-     * **When you click on "run" the process, the following variables must be passed in JSON format!**:
-     * **item** defines the name of the object for which the action will be executed **(can be any string value)**
-     * **place_id** defines the place in a shelf for which the action should be executed **(can be a numeric value between 1 and 6)**
-     * **shelf_id** defines the shelf for which the action is to be executed **(always set the value to 1)**
-     * **task** is the action that should be executed **(can be either "store" or "retrieve")**
-     * **transactionId** is a unique number needed for the receiving tasks **(always set the value to 0)**
-     
+   * **When you click on "run" the process, the following variables must be passed in JSON format!:**
+  | Variable name  | Description | Possible values|
+  | ------------- | ------------- | ------------- |
+  | item | The name of the object for which the action will be executed | Can be any string value |
+  | place_id  | The place in a shelf for which the action should be executed  | Must be a numeric value between 1 and 6 |
+  | shelf_id  | The shelf for which the action is to be executed | Always set the value to 1 |
+  | task  | The action that should be executed  | Must be either "store" or "retrieve" |
+  | transactionId  | An unique number needed for the receiving tasks  | always set the value to 0 |
+
 * Example: Storing a bicycle on the third place:
   ```bash
   {"item":"Bicycle","place_id":3,"shelf_id":1,"task":"store","transactionId":0}
