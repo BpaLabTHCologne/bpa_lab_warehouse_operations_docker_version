@@ -49,7 +49,7 @@ The file **.env_example.txt** in the repository serves as an example for an .env
    ```bash
    docker compose up --build
     ```
-3. Check in Docker Desktop under the **"Container "** tab whether all services are in **"Running "** mode, see the following image:
+3. Check in **Docker Desktop App** under the **"Container "** tab whether all services are in **"Running "** mode, see the following image:
 
 ![image](https://github.com/DomenicGonzalez/bpa_lab_warehouse_operations_docker_version/assets/134142150/09986dcd-6966-401c-9ad4-f104d47ff440)
 
