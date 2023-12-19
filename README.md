@@ -29,6 +29,7 @@ Clone or download this repository to your local machine.
 To install Docker Desktop, follow this link: https://docs.docker.com/get-docker/ and select the version for your operating system. Then follow the installation instructions. **Please note that your PC must be restarted once during or after the installation.**
 
 ## Needed configurations
+Please first open the folder in which you have cloned or saved the repository with a code editor of your choice, such as Visual Studio Code.
 
 ### Configuration of environment variables in own .env file.
 The file **.env_example.txt** in the repository serves as an example for an .env-file. 
