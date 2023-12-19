@@ -26,7 +26,7 @@ Clone or download this repository to your local machine.
 * You also need to install Git to be able to clone: https://git-scm.com/downloads 
 
 ## Installation of Docker Desktop
-To install Docker Desktop, follow this link: https://docs.docker.com/get-docker/ and select the version for your operating system. Then follow the installation instructions. Please note that your PC will restart once during or after the installation.
+To install Docker Desktop, follow this link: https://docs.docker.com/get-docker/ and select the version for your operating system. Then follow the installation instructions. **Please note that your PC must be restarted once during or after the installation.**
 
 ## Needed configurations
 
