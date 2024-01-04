@@ -9,7 +9,7 @@ The process application is available as a Docker container and consists of the f
 * mqtt-broker: Message broker for communication between the process-app and robot-app service
 
 ## Associated BPMN process model
-![warehouse-operations-process](https://github.com/DomenicGonzalez/bpa_lab_warehouse_operations_docker_version/assets/134142150/e838071e-7f9f-4c7f-b8f6-33fb417c184e)
+![warehouse-operations-process (1)](https://github.com/BpaLabTHCologne/bpa_lab_warehouse_operations_docker_version/assets/134142150/a983ea04-e4a5-4329-bebd-c020b131111a)
 
 
 ## Entry point for concepts and important components of Camunda 8 and Zeebe
